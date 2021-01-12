@@ -2,9 +2,17 @@
   background-color: $background-odd;
 }
 .math__oper-title {
-  width: 50%;
+  //   width: 50%;
   background-color: #e0e2db;
   -webkit-box-shadow: 2px 2px 10px 0px rgba(50, 50, 50, 0.51);
   -moz-box-shadow: 2px 2px 10px 0px rgba(50, 50, 50, 0.51);
   box-shadow: 2px 2px 10px 0px rgba(50, 50, 50, 0.51);
+}
+.math__oper-main {
+  width: 95%;
+  background-color: #e1dcc6;
+  border-radius: 0px 0px 5px 5px;
+  -webkit-box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.35);
+  -moz-box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.35);
+  box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.35);
 }
