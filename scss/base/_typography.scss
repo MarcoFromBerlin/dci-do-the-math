@@ -1,3 +1,6 @@
+@import "../variables/variables";
+@import "../variables/colors";
+
 body {
   font-family: $font-family-primary;
   overflow-x: hidden;
@@ -25,10 +28,13 @@ h3 {
 
 h4 {
   font-size: 1.4rem;
+  color: $h4-color;
 }
 
 h5 {
   font-size: 1rem;
+  color: $h5-color;
+  font-weight: $thin;
 }
 
 h6 {

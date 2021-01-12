@@ -1,8 +1,10 @@
 @import "../variables/variables";
+@import "../variables/colors";
 
 :root {
   font-size: 62, 5%;
   font-family: $font-family-primary;
+  background-color: $background;
 }
 html {
   scroll-behavior: smooth;

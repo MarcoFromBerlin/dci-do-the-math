@@ -100,15 +100,28 @@
     );
   }
 
-  &-light-blue {
+  // $color: "",
+  // $color-hover: "",
+  // $border-color: "",
+  // $text-norm: "",
+  // $text-hover: "",
+  // $type: "",
+  // $border: "",
+  // $size: ""
+
+  &-yellow {
     @extend %btn-shared;
-    color: $light-blue-text;
-    background-color: $light-blue;
-    text-transform: capitalize;
-    // &:hover {
-    //   background-color: blue;
-    //   color: white;
-    // }
+    @include button(
+      $send,
+      $send-hover,
+      $send-hover,
+      $send-text,
+      $send-text-hover,
+      solid,
+      5px,
+      small
+    );
+    letter-spacing: 1px;
   }
 }
 
@@ -125,19 +138,19 @@
     // }
   }
 }
-.btn {
-  &-yellow {
-    @extend %btn-shared;
-    color: $yellow-text;
-    background-color: $yellow;
+// .btn {
+//   &-yellow {
+//     @extend %btn-shared;
+//     color: $yellow-text;
+//     background-color: $yellow;
 
-    text-transform: uppercase;
+//     text-transform: uppercase;
 
-    & :hover {
-      background-color: red;
-    }
-  }
-}
+//     & :hover {
+//       background-color: red;
+//     }
+//   }
+// }
 
 // button[class^="btn-"]:hover,
 // a[class^="btn-"]:hover,
