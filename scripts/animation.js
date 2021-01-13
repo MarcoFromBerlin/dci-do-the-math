@@ -9,15 +9,18 @@ const btnRotationBack = document.querySelector(".btn-rotate-back");
 
 btnRotation.addEventListener("click", function (e) {
   e.preventDefault();
-  // cardFront.style.position = "absolute";
-  // cardBack.style.position = "relative";
+
+  setTimeout(() => {
+    mathMain.style.backgroundColor = "transparent";
+  }, 200);
   card.style.transform = "rotateY(180deg)";
-  mathMain.style.backgroundColor = "transparent";
 });
 
 btnRotationBack.addEventListener("click", function (e) {
   e.preventDefault();
-  // cardFront.style.position = "relative";
-  // cardBack.style.position = "absolute";
+
+  setTimeout(() => {
+    mathMain.style.backgroundColor = "#e1dcc6";
+  }, 200);
   card.style.transform = "rotateY(360deg)";
 });

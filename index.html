@@ -26,26 +26,28 @@
   </head>
   <body>
     <div class="container">
-      <div class="row">
-        <div class="col-3">DCI - D0 Th3 Ma7h</div>
-        <div class="col-9"></div>
-      </div>
-      <div class="row pv-1">
-        <div class="col-3"></div>
-        <div class="col-9">
-          <div class="menu">
-            <ul>
-              <li>
-                <a class="current" href="#math-operations">Math Operations</a>
-              </li>
-              <!-- <li><a href="#columns">Columns</a></li>
+      <div id="header" class="header z-index-10">
+        <div class="row">
+          <div class="col-3">DCI - D0 Th3 Ma7h</div>
+          <div class="col-9"></div>
+        </div>
+        <div class="row pv-1">
+          <div class="col-3"></div>
+          <div class="col-9">
+            <div class="menu">
+              <ul>
+                <li>
+                  <a class="current" href="#math-operations">Math Operations</a>
+                </li>
+                <!-- <li><a href="#columns">Columns</a></li>
               <li><a href="#menu">Menu</a></li>
               <li><a href="#buttons">Buttons</a></li>
               <li><a href="#forms">Forms + Inputs</a></li>
               <li><a href="#typography">Typography</a></li>
               <li><a href="#icons-social">Social Icons</a></li>
               <li><a href="#margins">Margins + Paddings</a></li> -->
-            </ul>
+              </ul>
+            </div>
           </div>
         </div>
       </div>
@@ -64,8 +66,8 @@
       </div> -->
       <div class="math-container t-center-x pv-2">
         <div class="row">
-          <div class="col-3"></div>
-          <div class="col-6 z-index-1">
+          <div class="col-2"></div>
+          <div class="col-8 z-index-1">
             <div class="math__oper-title pv-1">
               <h4 class="pb-1">NumberTeller</h4>
               <h5>
@@ -73,13 +75,13 @@
               </h5>
             </div>
           </div>
-          <div class="col-3"></div>
+          <div class="col-2"></div>
         </div>
         <div class="row">
-          <div class="col-3"></div>
-          <div class="col-6 t-center-x center-div-x flip-card">
+          <div class="col-2"></div>
+          <div class="col-8 t-center-x center-div-x flip-card">
             <div class="math__oper-main flip-card-inner">
-              <div class="flip-card-front">
+              <div class="flip-card-front pv-1">
                 <div class="row t-center-x">
                   <div class="col-2"></div>
                   <div class="col-8">
@@ -90,8 +92,13 @@
                       type="number"
                     />
                   </div>
-                  <div class="col-2">
-                    <button class="btn-rotate btn-yellow">show me</button>
+                  <div class="col-2 ml-1">
+                    <button
+                      title="Show me the code"
+                      class="btn-rotate btn-code"
+                    >
+                      <i class="fas fa-code text-thin"></i>
+                    </button>
                   </div>
                   <div class="col-12">
                     <div class="pb-1">Number</div>
@@ -107,15 +114,16 @@
                   <div class="what-to-do"></div>
                 </div>
               </div>
-              <div class="flip-card-back">
-                <div class="row t-center-x">
+              <div class="flip-card-back pv-1">
+                <div class="row t-center-x center-div-x">
                   <div class="col-2"></div>
                   <div class="col-8">
-                    <div class="pv-1">HERE THE CODE</div>
-                    <!-- <div class="pv-1">OPEN MODAL</div> -->
+                    <h4 class="pv-1 text-white text-thin">Here the code</h4>
                   </div>
-                  <div class="col-2">
-                    <button class="btn-rotate-back btn-yellow">show me</button>
+                  <div class="col-2 ml-1">
+                    <button title="Go back" class="btn-rotate-back btn-code">
+                      <i class="fab fa-medapps"></i>
+                    </button>
                   </div>
                   <div class="col-12 text-code-light text-black">
                     <pre class="line-numbers">
@@ -184,7 +192,7 @@ btn.addEventListener("click", function (e) {
             </div>
           </div>
 
-          <div class="col-3"></div>
+          <div class="col-2"></div>
         </div>
       </div>
       <!-- LOOK FOR RANGE -->
@@ -269,5 +277,4 @@ btn.addEventListener("click", function (e) {
       </div>
     </div>
   </body>
-  <script src="index.js"></script>
 </html>

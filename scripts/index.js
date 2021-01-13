@@ -388,3 +388,92 @@ console.log(findVoewls("AntdsstblsAUUIhmntrnsm"));
 // };
 
 // console.log(calcAge(arrYears));
+
+////////
+////////
+////////
+////////
+////////
+
+/// For loop exercise
+// 1. Write a for loop that will iterate from 0 to 15.
+// For each iteration, it will check if the current
+// number is odd or even, and display a message to the screen.
+// Sample Output:
+// "0 is even"
+// "1 is odd"
+// "2 is even"
+
+const checkIteration = (num) => {
+  for (let i = 0; i < num; i++) {
+    let isEven = [i] % 2 === 0;
+    isEven ? console.log(`${[i]} is even`) : console.log(`${[i]} is odd`);
+  }
+};
+
+// checkIteration(16);
+
+////////
+////////
+////////
+////////
+////////
+
+// 1. sumOfNumbers.
+// ​
+// - Create a program that adds up the numbers in
+//   an array(of at least 3 numbers).
+//   Bonus: Print to screen both the sum and the
+//   product of these numbers.
+// ​
+// 2. Hello Frien.
+// ​
+// - Create an array filled with your friends' and
+//   family's names. Loop over the array and greet
+//   each friend.Bonus: Print the indexes of each
+//   item in the array.
+
+//    Examples:
+// ​
+// - [Maria, Mike, Paul, Doven] ➞ expected output:
+//    "Hello Maria! Hello Mike! Hello Paul! Hello Doven!"
+// ​
+// - Bonus [Susan, Rezvane, Hadi] ➞ expected bonus
+//   output: "Susan is at index 0 of my friends
+//   and family array, Rezvane is at index 1 of my
+//   friends and family array, Hadi is at index 2 of
+//   my friends and family array".
+// ​
+// 3. Write a loop which iterates the integers from 1 to 100.
+//    But for multiples of three print "Fizz" instead of the
+//    number and for the multiples of five print "Buzz".
+//    For numbers which are multiples of both three and five print "FizzBuzz".
+
+let arrayOfNumbers = [];
+
+const addToArray = (num1, num2, num3) => {
+  const push = () => {
+    arrayOfNumbers.push(num1, num2, num3);
+    return arrayOfNumbers;
+  };
+  const sum = () => {
+    return arrayOfNumbers.reduce((acc, curr) => acc + curr);
+  };
+  return [push(), sum()];
+};
+
+console.log(addToArray(20, 20, 20));
+
+// ARRAY OF FRIENDS
+["Maria", "Mike", "Paul", "Doven"].forEach((x, i) =>
+  console.log(`${x} is at index ${i}`)
+);
+
+for (let i = 0; i < 100; i++) {
+  isThree = [i] % 3 === 0;
+  isFive = [i] % 5 === 0;
+
+  if (isThree) console.log(`Fizz`);
+  if (isFive) console.log(`Buzz`);
+  if (!isThree || !isFive) console.log(`${[i]}`);
+}
