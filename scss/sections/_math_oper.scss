@@ -1,6 +1,12 @@
-.number-operations {
+.math-container:nth-of-type(odd) {
   background-color: $background-odd;
 }
+.math-container:nth-of-type(even) {
+  background-color: $background-even;
+}
+// .math-container {
+//   background-color: $background-odd;
+// }
 .math__oper-title {
   //   width: 50%;
   background-color: #e0e2db;
