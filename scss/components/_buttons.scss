@@ -124,6 +124,21 @@
     letter-spacing: 1px;
     font-size: 1rem;
   }
+  &-code {
+    @extend %btn-shared;
+    @include button(
+      $code,
+      $code-hover,
+      $code-hover,
+      $code-text,
+      $code-text-hover,
+      solid,
+      5px,
+      small
+    );
+    letter-spacing: 1px;
+    font-size: 1rem;
+  }
 }
 
 .btn {
