@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script src="scripts/script-sticky-menu.js" defer></script>
+    <link href="prism/prism.css" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link rel="stylesheet" href="css/main.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@200;300;400&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DCI - D0 Th3 Ma7h</title>
+    <script
+      src="https://kit.fontawesome.com/2c6793b698.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <div class="container">
+      <div id="header" class="header z-index-10">
+        <div class="row">
+          <div class="col-3">DCI - D0 Th3 Ma7h</div>
+          <div class="col-9"></div>
+        </div>
+        <div class="row pv-1">
+          <div class="col-3"></div>
+          <div class="col-9">
+            <div class="menu">
+              <ul>
+                <li>
+                  <a class="current" href="#math-operations">Math Operations</a>
+                </li>
+                <!-- <li><a href="#columns">Columns</a></li>
+              <li><a href="#menu">Menu</a></li>
+              <li><a href="#buttons">Buttons</a></li>
+              <li><a href="#forms">Forms + Inputs</a></li>
+              <li><a href="#typography">Typography</a></li>
+              <li><a href="#icons-social">Social Icons</a></li>
+              <li><a href="#margins">Margins + Paddings</a></li> -->
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- <div class="flip-card">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <button class="btn-rotate btn-yellow">show me</button>
+          </div>
+          <div class="flip-card-back">
+            <h1>John Doe</h1>
+            <p>Architect & Engineer</p>
+            <p>We love that guy</p>
+            <button class="btn-rotate-back btn-yellow">show me</button>
+          </div>
+        </div>
+      </div> -->
+      <div class="math-container t-center-x pv-2">
+        <div class="row">
+          <div class="col-2"></div>
+          <div class="col-8 z-index-1">
+            <div class="math__oper-title pv-1">
+              <h4 class="pb-1">NumberTeller</h4>
+              <h5>
+                Give me a result and a number, and I'll tell you what to do
+              </h5>
+            </div>
+          </div>
+          <div class="col-2"></div>
+        </div>
+        <div class="row">
+          <div class="col-2"></div>
+          <div class="col-8 t-center-x center-div-x flip-card">
+            <div class="math__oper-main flip-card-inner">
+              <div class="flip-card-front pv-1">
+                <div class="row t-center-x">
+                  <div class="col-2"></div>
+                  <div class="col-8">
+                    <div class="pv-1">Result</div>
+                    <input
+                      class="input-result input-text-email t-center-x"
+                      placeholder="Type the result"
+                      type="number"
+                    />
+                  </div>
+                  <div class="col-2 ml-1">
+                    <button
+                      title="Show me the code"
+                      class="btn-rotate btn-code"
+                    >
+                      <i class="fas fa-code text-thin"></i>
+                    </button>
+                  </div>
+                  <div class="col-12">
+                    <div class="pb-1">Number</div>
+                    <input
+                      class="input-number input-text-email t-center-x"
+                      placeholder="Insert a number"
+                      type="number"
+                    />
+                  </div>
+                </div>
+                <div class="col-12 btn-container pv-2">
+                  <button class="btn-send btn-yellow">Send</button>
+                  <div class="what-to-do"></div>
+                </div>
+              </div>
+              <div class="flip-card-back pv-1">
+                <div class="row t-center-x center-div-x">
+                  <div class="col-2"></div>
+                  <div class="col-8">
+                    <h4 class="pv-1 text-white text-thin">Here the code</h4>
+                  </div>
+                  <div class="col-2 ml-1">
+                    <button title="Go back" class="btn-rotate-back btn-code">
+                      <i class="fab fa-medapps"></i>
+                    </button>
+                    <button title="Go back" class="btn-code-zoom">YOOM</button>
+                  </div>
+                  <div class="col-12 code-box text-code-light text-black">
+                    <pre class="line-numbers set-max-height">
+                <code id='code-window' class="language-javascript">
+const number = document.querySelector(".input-number");
+const result = document.querySelector(".input-result");
+const btn = document.querySelector(".btn-send");
+const what = document.querySelector(".what-to-do");
+
+const doTheMath = (num1, res) => {
+  if (num1 >= res * 2 && (num1 / res) % 2 === 0)
+    return `The given result must be ${res} therefore you can divide by ${
+      num1 / res
+    }`;
+  if ((res / num1) % 2 === 0)
+    return `The given result must be ${res} therefore gotta multiply by ${
+      res / num1
+    }`;
+  if (num1 > res)
+    return `The given result must be ${res} therefore gotta subtract ${
+      num1 - res
+    }`;
+  if (num1 < res)
+    return `The given result must be ${res} therefore gotta add ${res - num1}`;
+  if (num1 === res)
+    return `The given result must be ${res} therefore gotta do nothing (null)`;
+};
+
+btn.addEventListener("click", function (e) {
+  e.preventDefault();
+
+  let num1 = Number(number.value);
+  let res = Number(result.value);
+
+  what.classList.add("pt-2");
+
+  if (num1 >= res * 2 && (num1 / res) % 2 === 0)
+    return (what.textContent = `The given result must be ${res} therefore you can divide by ${
+      num1 / res
+    }`);
+
+  if ((res / num1) % 2 === 0)
+    return (what.textContent = `The given result must be ${res} therefore gotta multiply by ${
+      res / num1
+    }`);
+
+  if (num1 > res)
+    return (what.textContent = `The given result must be ${res} therefore gotta subtract ${
+      num1 - res
+    }`);
+
+  if (num1 < res)
+    return (what.textContent = `The given result must be ${res} therefore gotta add ${
+      res - num1
+    }`);
+
+  if (num1 === res)
+    return (what.textContent = `The given result must be ${res} therefore gotta do nothing (null)`);
+});
+
+                </code>
+              </pre>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-2"></div>
+        </div>
+      </div>
+      <!-- LOOK FOR RANGE -->
+      <div class="math-container t-center-x pv-2">
+        <div class="row">
+          <div class="col-2"></div>
+          <div class="col-8 z-index-1">
+            <div class="math__oper-title pv-1">
+              <h4 class="pb-1">NumberTeller</h4>
+              <h5>
+                Give me a result and a number, and I'll tell you what to do
+              </h5>
+            </div>
+          </div>
+          <div class="col-2"></div>
+        </div>
+        <div class="row">
+          <div class="col-2"></div>
+          <div class="col-8 t-center-x center-div-x flip-card">
+            <div class="math__oper-main flip-card-inner">
+              <div class="flip-card-front pv-1">
+                <div class="row t-center-x">
+                  <div class="col-2"></div>
+                  <div class="col-8">
+                    <div class="pv-1">Result</div>
+                    <input
+                      class="input-result input-text-email t-center-x"
+                      placeholder="Type the result"
+                      type="number"
+                    />
+                  </div>
+                  <div class="col-2 ml-1">
+                    <button
+                      title="Show me the code"
+                      class="btn-rotate btn-code"
+                    >
+                      <i class="fas fa-code text-thin"></i>
+                    </button>
+                  </div>
+                  <div class="col-12">
+                    <div class="pb-1">Number</div>
+                    <input
+                      class="input-number input-text-email t-center-x"
+                      placeholder="Insert a number"
+                      type="number"
+                    />
+                  </div>
+                </div>
+                <div class="col-12 btn-container pv-2">
+                  <button class="btn-send btn-yellow">Send</button>
+                  <div class="what-to-do"></div>
+                </div>
+              </div>
+              <div class="flip-card-back pv-1">
+                <div class="row t-center-x center-div-x">
+                  <div class="col-2"></div>
+                  <div class="col-8">
+                    <h4 class="pv-1 text-white text-thin">Here the code</h4>
+                  </div>
+                  <div class="col-2 ml-1">
+                    <button title="Go back" class="btn-rotate-back btn-code">
+                      <i class="fab fa-medapps"></i>
+                    </button>
+                    <button title="Go back" class="btn-code-zoom">YOOM</button>
+                  </div>
+                  <div class="col-12 code-box text-code-light text-black">
+                    <pre class="line-numbers set-max-height">
+                <code id='code-window' class="language-javascript">
+const number = document.querySelector(".input-number");
+const result = document.querySelector(".input-result");
+const btn = document.querySelector(".btn-send");
+const what = document.querySelector(".what-to-do");
+
+const doTheMath = (num1, res) => {
+  if (num1 >= res * 2 && (num1 / res) % 2 === 0)
+    return `The given result must be ${res} therefore you can divide by ${
+      num1 / res
+    }`;
+  if ((res / num1) % 2 === 0)
+    return `The given result must be ${res} therefore gotta multiply by ${
+      res / num1
+    }`;
+  if (num1 > res)
+    return `The given result must be ${res} therefore gotta subtract ${
+      num1 - res
+    }`;
+  if (num1 < res)
+    return `The given result must be ${res} therefore gotta add ${res - num1}`;
+  if (num1 === res)
+    return `The given result must be ${res} therefore gotta do nothing (null)`;
+};
+
+btn.addEventListener("click", function (e) {
+  e.preventDefault();
+
+  let num1 = Number(number.value);
+  let res = Number(result.value);
+
+  what.classList.add("pt-2");
+
+  if (num1 >= res * 2 && (num1 / res) % 2 === 0)
+    return (what.textContent = `The given result must be ${res} therefore you can divide by ${
+      num1 / res
+    }`);
+
+  if ((res / num1) % 2 === 0)
+    return (what.textContent = `The given result must be ${res} therefore gotta multiply by ${
+      res / num1
+    }`);
+
+  if (num1 > res)
+    return (what.textContent = `The given result must be ${res} therefore gotta subtract ${
+      num1 - res
+    }`);
+
+  if (num1 < res)
+    return (what.textContent = `The given result must be ${res} therefore gotta add ${
+      res - num1
+    }`);
+
+  if (num1 === res)
+    return (what.textContent = `The given result must be ${res} therefore gotta do nothing (null)`);
+});
+
+                </code>
+              </pre>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-2"></div>
+        </div>
+      </div>
+      <!-- LOOK FOR RANGE -->
+      <div class="math-container t-center-x pv-2 mv-3">
+        <div class="row">
+          <div class="col-3"></div>
+          <div class="col-6 z-index-1">
+            <div class="math__oper-title pv-1">
+              <h4 class="pb-1">Look for range</h4>
+              <h5>Check if a number is in between other two</h5>
+            </div>
+          </div>
+          <div class="col-3"></div>
+        </div>
+        <div class="row">
+          <div class="col-3"></div>
+          <div class="col-6 t-center-x center-div-x">
+            <div class="math__oper-main">
+              <div class="row t-center-x">
+                <div class="col-12">
+                  <div class="pv-1">Lower</div>
+                  <input
+                    class="input-low input-result input-text-email t-center-x"
+                    type="number"
+                  /><br />
+                </div>
+                <div class="col-12">
+                  <div class="pv-1">Upper</div>
+                  <input
+                    class="input-upp input-result input-text-email t-center-x"
+                    type="number"
+                  /><br />
+                </div>
+                <div class="col-12">
+                  <div class="pv-1">Check</div>
+                  <input
+                    class="input-check input-result input-text-email t-center-x"
+                    type="number"
+                  /><br />
+                </div>
+                <div class="col-12 btn-container pv-2 center-div-x">
+                  <button class="btn-send-range btn-yellow">Send</button>
+                  <div class="is-in-range"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-3"></div>
+        </div>
+      </div>
+
+      <div><br /></div>
+      <div><br /></div>
+      <div>Look for range</div>
+      <div><br /></div>
+      <div class="look-range">
+        Lower <input class="input-low" type="number" /><br />
+        Upper <input class="input-upp" type="number" /><br />
+        Check <input class="input-check" type="number" /><br />
+        <button class="btn-send-range">Send</button>
+        <div class="is-in-range"></div>
+      </div>
+      <div><br /></div>
+      <div><br /></div>
+      <div>Seconds converter</div>
+      <div><br /></div>
+      <div class="look-range">
+        Days <input class="input-days" type="number" /><br />
+        Hours <input class="input-hours" type="number" /><br />
+        Minutes <input class="input-minutes" type="number" /><br />
+        <button class="btn-send-conver-sec">Send</button>
+        <div class="print-cov-secs"></div>
+      </div>
+      <div><br /></div>
+      <div><br /></div>
+      <div>Odd Even checker</div>
+      <div><br /></div>
+      <div class="look-range">
+        Number <input class="input-number-odd-even" type="number" /><br />
+        <button class="btn-send-odd-even-check">Send</button>
+        <div class="print-odd-even-check"></div>
+      </div>
+    </div>
+
+    <!-- MODALS -->
+    <div class="modal hidden">
+      <button class="btn--close-modal">&times;</button>
+      <h2 class="modal__header">
+        Open your bank account <br />
+        in just <span class="highlight">5 minutes</span>
+      </h2>
+      <form class="modal__form">
+        <label>First Name</label>
+        <input type="text" />
+        <label>Last Name</label>
+        <input type="text" />
+        <label>Email Address</label>
+        <input type="email" />
+        <button class="btn">Next step &rarr;</button>
+      </form>
+    </div>
+  </body>
+  <script src="prism/prism.js"></script>
+  <script src="scripts/index.js" defer></script>
+  <script src="scripts/animation.js" defer></script>
+  <script src="scripts/modals.js" defer></script>
+</html>
