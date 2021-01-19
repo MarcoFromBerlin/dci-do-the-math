@@ -48,14 +48,14 @@ const rotateBack = (e) => {
       "rotateY(360deg)";
   }
 };
-let isZoomed = false;
-let countZoom = "";
 
 const zoomCode = (e) => {
   if (e.target.classList.contains("btn-code-zoom")) {
-    console.log("countZoom", countZoom);
+    // hiden class hide-zoomed that hold the status of the div zoom
+    const isZoomedDiv = e.target.parentElement.parentElement.querySelector(
+      ".is-zoomed"
+    );
 
-    countZoom++;
     const languageJavaContainer = e.target.parentElement.parentElement.querySelector(
       ".line-numbers"
     );
@@ -70,11 +70,14 @@ const zoomCode = (e) => {
 
     let heightCode = languageJava.offsetHeight + 130;
     let widthCode = languageJava.offsetWidth; // 960
-    let sectionHeight = e.target.closest(".math-container").offsetHeight;
+    let sectionHeight = mathContainer.offsetHeight;
 
-    if (!isZoomed) localStorage.setItem("oldWidthCode", codeBox.offsetWidth);
-    if (!isZoomed) localStorage.setItem("oldHeightCode", codeBox.offsetHeight);
-    if (!isZoomed) localStorage.setItem("oldHeightSection", sectionHeight);
+    if (Number(isZoomedDiv.textContent) === 0)
+      localStorage.setItem("oldWidthCode", codeBox.offsetWidth);
+    if (Number(isZoomedDiv.textContent) === 0)
+      localStorage.setItem("oldHeightCode", codeBox.offsetHeight);
+    if (Number(isZoomedDiv.textContent) === 0)
+      localStorage.setItem("oldHeightSection", sectionHeight);
 
     let oldWidthCode = localStorage.getItem("oldWidthCode");
     let oldHeightCode = localStorage.getItem("oldHeightCode");
@@ -89,7 +92,8 @@ const zoomCode = (e) => {
         ? widthCode + paddingHorr * 2
         : widthCode;
 
-    if (!isZoomed) {
+    if (Number(isZoomedDiv.textContent) === 0) {
+      console.log("out");
       codeBox.style.transition = "all 0.3s";
 
       codeBox.style.marginLeft = `-${(calcOptimalWidth - oldWidthCode) / 2}px`;
@@ -102,11 +106,10 @@ const zoomCode = (e) => {
 
       mathContainer.style.transition = "all 0.2s";
       mathContainer.style.height = `${heightCode + paddingVert}px`;
+      isZoomedDiv.textContent = "1";
+    } else if (Number(isZoomedDiv.textContent) === 1) {
+      console.log("in");
 
-      return (isZoomed = true);
-    }
-
-    if (isZoomed) {
       codeBox.style.transition = "all 0.2s";
       codeBox.style.width = `${oldWidthCode}px`;
       codeBox.style.marginLeft = 0;
@@ -115,8 +118,7 @@ const zoomCode = (e) => {
       mathContainer.style.height = `${oldHeightSection}px`;
 
       languageJavaContainer.classList.add("set-max-height");
-
-      return (isZoomed = false);
+      isZoomedDiv.textContent = "0";
     }
   }
   // console.log(isZoomed);

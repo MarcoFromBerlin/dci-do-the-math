@@ -20,10 +20,13 @@
   visibility: hidden;
 }
 
+.hide-zoomed {
+  display: none;
+}
+
 .items-w-100 {
   width: 100%;
 }
-
 .row-gap-0 {
   gap: 0rem;
 }
