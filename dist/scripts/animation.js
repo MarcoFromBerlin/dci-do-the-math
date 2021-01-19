@@ -6,8 +6,7 @@ const btnRotationBack = document.querySelectorAll(".btn-rotate-back");
 
 const btnCodeZoom = document.querySelectorAll(".btn-code-zoom");
 
-const card = document.querySelector(".flip-card-inner");
-// console.log(card);
+// const card = document.querySelector(".flip-card-inner");
 const cardFront = document.querySelector(".flip-card-front");
 const cardBack = document.querySelector(".flip-card-back");
 
@@ -20,34 +19,6 @@ const mathMain = document.querySelector(".math__oper-main");
 // const languageJava = document.querySelector(".language-javascript");
 
 // FUNCTIONS
-
-const rotate = (e) => {
-  e.preventDefault();
-  if (e.target.classList.contains("btn-rotate")) {
-    setTimeout(() => {
-      e.target.parentElement.parentElement.parentElement.parentElement.parentElement.style.backgroundColor =
-        "transparent";
-    }, 200);
-
-    e.target.parentElement.parentElement.parentElement.parentElement.style.transform =
-      "rotateY(180deg)";
-  }
-};
-
-const rotateBack = (e) => {
-  e.preventDefault();
-
-  if (e.target.classList.contains("btn-rotate-back")) {
-    console.log("rotate-back");
-    setTimeout(() => {
-      e.target.parentElement.parentElement.parentElement.parentElement.style.backgroundColor =
-        "#e1dcc6";
-    }, 200);
-
-    e.target.parentElement.parentElement.parentElement.parentElement.style.transform =
-      "rotateY(360deg)";
-  }
-};
 
 const zoomCode = (e) => {
   if (e.target.classList.contains("btn-code-zoom")) {
@@ -67,6 +38,9 @@ const zoomCode = (e) => {
     const codeBox = e.target.parentElement.parentElement.querySelector(
       ".code-box"
     );
+
+    console.log("query", document.querySelector(".flip-card-inner"));
+    console.log("fli-card", e.target.parentElement.parentElement);
 
     let heightCode = languageJava.offsetHeight + 130;
     let widthCode = languageJava.offsetWidth; // 960
@@ -93,7 +67,6 @@ const zoomCode = (e) => {
         : widthCode;
 
     if (Number(isZoomedDiv.textContent) === 0) {
-      console.log("out");
       codeBox.style.transition = "all 0.3s";
 
       codeBox.style.marginLeft = `-${(calcOptimalWidth - oldWidthCode) / 2}px`;
@@ -106,9 +79,15 @@ const zoomCode = (e) => {
 
       mathContainer.style.transition = "all 0.2s";
       mathContainer.style.height = `${heightCode + paddingVert}px`;
+
+      // set backface-visibility: hidden // visible;
+
+      e.target.parentElement.parentElement.style.backfaceVisibility = "hidden";
+
       isZoomedDiv.textContent = "1";
     } else if (Number(isZoomedDiv.textContent) === 1) {
-      console.log("in");
+      // set backface-visibility: hidden // visible;
+      e.target.parentElement.parentElement.style.backfaceVisibility = "visible";
 
       codeBox.style.transition = "all 0.2s";
       codeBox.style.width = `${oldWidthCode}px`;
@@ -122,6 +101,46 @@ const zoomCode = (e) => {
     }
   }
   // console.log(isZoomed);
+};
+
+const rotate = (e) => {
+  e.preventDefault();
+
+  if (e.target.classList.contains("btn-rotate")) {
+    setTimeout(() => {
+      e.target.parentElement.parentElement.parentElement.parentElement.parentElement.style.backgroundColor =
+        "transparent";
+    }, 200);
+
+    e.target.parentElement.parentElement.parentElement.parentElement.style.transform =
+      "rotateY(180deg)";
+    // e.target.parentElement.parentElement.parentElement.parentElement.style.backfaceVisibility =
+    //   "hidden";
+  }
+};
+
+const rotateBack = (e) => {
+  // console.log("fired");
+  e.preventDefault();
+  if (e.target.classList.contains("btn-rotate-back")) {
+    const isZoomedDiv = e.target.parentElement.parentElement.querySelector(
+      ".is-zoomed"
+    );
+
+    // console.log(isZoomedDiv);
+
+    isZoomedDiv.textContent = "1";
+    // zoomCode(e);
+
+    console.log("rotate-back");
+    setTimeout(() => {
+      e.target.parentElement.parentElement.parentElement.parentElement.style.backgroundColor =
+        "#e1dcc6";
+    }, 200);
+
+    e.target.parentElement.parentElement.parentElement.parentElement.style.transform =
+      "rotateY(360deg)";
+  }
 };
 
 /// event listeners
