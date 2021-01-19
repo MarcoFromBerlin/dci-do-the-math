@@ -65,20 +65,23 @@ let isZoomed = false;
 btnCodeZoom.addEventListener("click", function (e) {
   e.preventDefault();
 
-  const getWidthCode = Object.freeze([codeBox.offsetWidth]); // 614
-
-  console.log("getWidthCode", getWidthCode);
-
   let heightCode = languageJava.offsetHeight + 130;
   let widthCode = languageJava.offsetWidth; // 960
+  let sectionHeight = e.target.closest(".math-container").offsetHeight;
+
   // let getWidthCode = codeBox.offsetWidth; // 614
 
-  let oldWidthCode = getWidthCode[0];
-  console.log(typeof oldWidthCode, oldWidthCode);
+  if (!isZoomed) localStorage.setItem("oldWidthCode", codeBox.offsetWidth);
+  if (!isZoomed) localStorage.setItem("oldHeightCode", codeBox.offsetHeight);
+  if (!isZoomed) localStorage.setItem("oldHeightSection", sectionHeight);
 
-  // console.log("bck", bckCode);
+  // console.log(codeBox.offsetHeight);
 
-  let paddHeight = 130;
+  // console.log("oldHeightSection", localStorage.getItem("oldHeightSection"));
+
+  let oldWidthCode = localStorage.getItem("oldWidthCode");
+  let oldHeightCode = localStorage.getItem("oldHeightCode");
+  let oldHeightSection = localStorage.getItem("oldHeightSection");
 
   let paddingVert = 250;
   let paddingHorr = 80;
@@ -88,10 +91,9 @@ btnCodeZoom.addEventListener("click", function (e) {
     mathContainer.clientWidth >= widthCode + paddingHorr * 2
       ? widthCode + paddingHorr * 2
       : widthCode;
+
   if (!isZoomed) {
     codeBox.style.transition = "all 0.3s";
-
-    //new margin = new width (widthCode) - old width / 2
 
     codeBox.style.marginLeft = `-${(calcOptimalWidth - oldWidthCode) / 2}px`;
     codeBox.style.width = `${calcOptimalWidth}px`;
@@ -106,9 +108,18 @@ btnCodeZoom.addEventListener("click", function (e) {
 
     isZoomed = true;
   } else {
-    // codeBox.style.transition = "all 0.3s";
-    console.log("else", getWidthCode);
+    console.log(e.target.parentElement);
+    console.log(e.target.closest(".math-container").offsetHeight);
+
+    codeBox.style.transition = "all 0.3s";
     codeBox.style.width = `${oldWidthCode}px`;
+    codeBox.style.marginLeft = 0;
+    codeBox.style.height = `${oldHeightCode}px`;
+
+    // languageJava.style.height = `${oldHeightSection}px`;
+
+    mathContainer.style.height = `${oldHeightSection}px`;
+
     languageJavaContainer.classList.add("set-max-height");
 
     isZoomed = false;
