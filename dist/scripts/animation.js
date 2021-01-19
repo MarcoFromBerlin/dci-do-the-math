@@ -11,13 +11,13 @@ const card = document.querySelector(".flip-card-inner");
 const cardFront = document.querySelector(".flip-card-front");
 const cardBack = document.querySelector(".flip-card-back");
 
-const codeBox = document.querySelector(".code-box");
+// const codeBox = document.querySelector(".code-box");
 
 const mathMain = document.querySelector(".math__oper-main");
-const mathContainer = document.querySelector(".math-container");
+// const mathContainer = document.querySelector(".math-container");
 
-const languageJavaContainer = document.querySelector(".line-numbers");
-const languageJava = document.querySelector(".language-javascript");
+// const languageJavaContainer = document.querySelector(".line-numbers");
+// const languageJava = document.querySelector(".language-javascript");
 
 // FUNCTIONS
 
@@ -48,16 +48,29 @@ const rotateBack = (e) => {
       "rotateY(360deg)";
   }
 };
+let isZoomed = false;
+let countZoom = "";
 
 const zoomCode = (e) => {
-  e.preventDefault();
-  let isZoomed = false;
   if (e.target.classList.contains("btn-code-zoom")) {
+    console.log("countZoom", countZoom);
+
+    countZoom++;
+    const languageJavaContainer = e.target.parentElement.parentElement.querySelector(
+      ".line-numbers"
+    );
+    const languageJava = e.target.parentElement.parentElement.children[3].querySelector(
+      "#code-window"
+    );
+
+    const mathContainer = e.target.parentElement.closest(".math-container");
+    const codeBox = e.target.parentElement.parentElement.querySelector(
+      ".code-box"
+    );
+
     let heightCode = languageJava.offsetHeight + 130;
     let widthCode = languageJava.offsetWidth; // 960
     let sectionHeight = e.target.closest(".math-container").offsetHeight;
-
-    // let getWidthCode = codeBox.offsetWidth; // 614
 
     if (!isZoomed) localStorage.setItem("oldWidthCode", codeBox.offsetWidth);
     if (!isZoomed) localStorage.setItem("oldHeightCode", codeBox.offsetHeight);
@@ -90,8 +103,10 @@ const zoomCode = (e) => {
       mathContainer.style.transition = "all 0.2s";
       mathContainer.style.height = `${heightCode + paddingVert}px`;
 
-      isZoomed = true;
-    } else if (isZoomed) {
+      return (isZoomed = true);
+    }
+
+    if (isZoomed) {
       codeBox.style.transition = "all 0.2s";
       codeBox.style.width = `${oldWidthCode}px`;
       codeBox.style.marginLeft = 0;
@@ -101,10 +116,10 @@ const zoomCode = (e) => {
 
       languageJavaContainer.classList.add("set-max-height");
 
-      isZoomed = false;
+      return (isZoomed = false);
     }
   }
-  console.log("isZoomed", isZoomed);
+  // console.log(isZoomed);
 };
 
 /// event listeners
@@ -121,7 +136,7 @@ btnRotationBack.forEach((element) => {
 });
 
 btnCodeZoom.forEach((element) => {
-  element.addEventListener("click", zoomCode);
+  element.addEventListener("click", zoomCode());
 });
 
 // END EVENT LISTENERS

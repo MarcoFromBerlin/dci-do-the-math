@@ -991,6 +991,94 @@ const checkPropLength = (objs) => {
 
 // // checkPropLength([obj1, obj2, obj3, obj4, obj5]);
 
+// //////////////////////////////
+// PASSWORD VALIDATOR EXERCISE
+// //////////////////////////////
+// Write a isValidPassword function
+// It accepts 2 arguments: password and username
+// Password must:
+//  - be at least 8 characters
+//  - cannot contain spaces
+//  - cannot contain the username
+// If all requirements are met, return true.
+//Otherwise: false
+
+const isValidPassword = (user, pass) =>
+  user.length > 8 &&
+  pass.length > 8 &&
+  !/\s/.test(user) &&
+  !/\s/.test(pass) &&
+  !user.includes(pass);
+
+// console.log(isValidPassword("89Fjj1nms", "dogLuvrsss")); //true
+
+// console.log(isValidPassword("dogLuvr123!", "dogLuvr")); //false
+
+// console.log(isValidPassword("hello1", "dogLuvr")); //false
+
+//
+///
+//
+//
+
+// # Find the Average
+// ​
+// Write a function to find the
+// average value in an array of numbers
+
+const avg = (arr) => arr.reduce((acc, cur) => acc + cur, 0) / arr.length;
+
+// console.log(avg([0, 50])); // 25
+
+// console.log(avg([75, 76, 80, 95, 100])); // 85.2
+
+// # Pangram Exercise
+// ​
+// A pangram is a sentence that contains every
+// letter of the alphabet, like:
+// "The quick brown fox jumps over the lazy dog"
+// ​
+// Write a function called isPangram, which checks
+// to see if a given sentence contains every letter
+// of the alphabet.Make sure you igore string casing!
+
+const isPangram = (string) =>
+  /(?=.*a)(?=.*b)(?=.*c)(?=.*d)(?=.*e)(?=.*f)(?=.*g)(?=.*h)(?=.*i)(?=.*j)(?=.*k)(?=.*l)(?=.*m)(?=.*n)(?=.*o)(?=.*p)(?=.*q)(?=.*r)(?=.*s)(?=.*t)(?=.*u)(?=.*v)(?=.*w)(?=.*x)(?=.*y)(?=.*z)./i.test(
+    string
+  );
+
+console.log(isPangram("The five boxing wizards jump quickly")); //true
+console.log(isPangram("The five boxing wizards jump quick")); //false
+
+//
+///
+//
+//
+
+// # Get Playing Cards
+// ​
+// Write a getCard() function which returns a
+// random playing card object, like:
+
+// `{ value: 'K' suit: 'clubs' }`
+
+// Pick a random value from:
+// `1,2,3,4,5,6,7,8,9,10,J,Q,K,A`
+
+const getCard = (card) => {
+  const valuesCard = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, "J", "Q", "K", "A"];
+  const random = Math.floor(Math.random() * valuesCard.length);
+  return { value: random, suit: card };
+};
+
+// `clubs,spades, hearts, diamonds`;
+
+// console.log(getCard("clubs"));
+
+///
+//
+//
+
 function domainName(url) {
   let domainName = "";
   // let toCut =
