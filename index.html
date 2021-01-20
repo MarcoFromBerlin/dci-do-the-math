@@ -20,9 +20,6 @@
       src="https://kit.fontawesome.com/2c6793b698.js"
       crossorigin="anonymous"
     ></script>
-    <script src="prism/prism.js"></script>
-    <script src="scripts/index.js" defer></script>
-    <script src="scripts/animation.js" defer></script>
   </head>
   <body>
     <div class="container">
@@ -64,7 +61,7 @@
           </div>
         </div>
       </div> -->
-      <div class="math-container t-center-x pv-2">
+      <div class="math-container t-center-x pt-2 pb-3">
         <div class="row">
           <div class="col-2"></div>
           <div class="col-8 z-index-1">
@@ -119,15 +116,155 @@
                   <div class="col-2"></div>
                   <div class="col-8">
                     <h4 class="pv-1 text-white text-thin">Here the code</h4>
+                    <div class="is-zoomed hide-zoomed">0</div>
                   </div>
                   <div class="col-2 ml-1">
                     <button title="Go back" class="btn-rotate-back btn-code">
                       <i class="fab fa-medapps"></i>
                     </button>
+                    <button title="Zoom" class="mt-1 btn-code-zoom btn-code">
+                      <i class="fas fa-search-plus"></i>
+                    </button>
                   </div>
-                  <div class="col-12 text-code-light text-black">
-                    <pre class="line-numbers">
-                <code class="language-javascript">
+                  <div class="col-12 code-box text-code-light text-black">
+                    <pre class="line-numbers set-max-height">
+                <code id='code-window' class="language-javascript">
+const number = document.querySelector(".input-number");
+const result = document.querySelector(".input-result");
+const btn = document.querySelector(".btn-send");
+const what = document.querySelector(".what-to-do");
+
+const doTheMath = (num1, res) => {
+  if (num1 >= res * 2 && (num1 / res) % 2 === 0)
+    return `The given result must be ${res} therefore you can divide by ${
+      num1 / res
+    }`;
+  if ((res / num1) % 2 === 0)
+    return `The given result must be ${res} therefore gotta multiply by ${
+      res / num1
+    }`;
+  if (num1 > res)
+    return `The given result must be ${res} therefore gotta subtract ${
+      num1 - res
+    }`;
+  if (num1 < res)
+    return `The given result must be ${res} therefore gotta add ${res - num1}`;
+  if (num1 === res)
+    return `The given result must be ${res} therefore gotta do nothing (null)`;
+};
+
+btn.addEventListener("click", function (e) {
+  e.preventDefault();
+
+  let num1 = Number(number.value);
+  let res = Number(result.value);
+
+  what.classList.add("pt-2");
+
+  if (num1 >= res * 2 && (num1 / res) % 2 === 0)
+    return (what.textContent = `The given result must be ${res} therefore you can divide by ${
+      num1 / res
+    }`);
+
+  if ((res / num1) % 2 === 0)
+    return (what.textContent = `The given result must be ${res} therefore gotta multiply by ${
+      res / num1
+    }`);
+
+  if (num1 > res)
+    return (what.textContent = `The given result must be ${res} therefore gotta subtract ${
+      num1 - res
+    }`);
+
+  if (num1 < res)
+    return (what.textContent = `The given result must be ${res} therefore gotta add ${
+      res - num1
+    }`);
+
+  if (num1 === res)
+    return (what.textContent = `The given result must be ${res} therefore gotta do nothing (null)`);
+});
+
+                </code>
+              </pre>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-2"></div>
+        </div>
+      </div>
+      <!-- LOOK FOR RANGE -->
+      <div class="math-container t-center-x pt-2 pb-3">
+        <div class="row">
+          <div class="col-2"></div>
+          <div class="col-8 z-index-1">
+            <div class="math__oper-title pv-1">
+              <h4 class="pb-1">NumberTeller</h4>
+              <h5>
+                Give me a result and a number, and I'll tell you what to do
+              </h5>
+            </div>
+          </div>
+          <div class="col-2"></div>
+        </div>
+        <div class="row">
+          <div class="col-2"></div>
+          <div class="col-8 t-center-x center-div-x flip-card">
+            <div class="math__oper-main flip-card-inner">
+              <div class="flip-card-front pv-1">
+                <div class="row t-center-x">
+                  <div class="col-2"></div>
+                  <div class="col-8">
+                    <div class="pv-1">Result</div>
+                    <input
+                      class="input-result input-text-email t-center-x"
+                      placeholder="Type the result"
+                      type="number"
+                    />
+                  </div>
+                  <div class="col-2 ml-1">
+                    <button
+                      title="Show me the code"
+                      class="btn-rotate btn-code"
+                    >
+                      <i class="fas fa-code text-thin"></i>
+                    </button>
+                  </div>
+                  <div class="col-12">
+                    <div class="pb-1">Number</div>
+                    <input
+                      class="input-number input-text-email t-center-x"
+                      placeholder="Insert a number"
+                      type="number"
+                    />
+                  </div>
+                </div>
+                <div class="col-12 btn-container pv-2">
+                  <button class="btn-send btn-yellow">Send</button>
+                  <div class="what-to-do"></div>
+                </div>
+              </div>
+              <div class="flip-card-back pv-1">
+                <div class="row t-center-x center-div-x">
+                  <div class="col-2"></div>
+                  <div class="col-8">
+                    <h4 class="pv-1 text-white text-thin">Here the code</h4>
+                    <div class="is-zoomed hide-zoomed">0</div>
+                  </div>
+                  <div class="col-2 ml-1">
+                    <button title="Go back" class="btn-rotate-back btn-code">
+                      <i class="fab fa-medapps"></i>
+                    </button>
+                    <button title="Zoom" class="mt-1 btn-code-zoom btn-code">
+                      <i class="fas fa-search-plus"></i>
+                    </button>
+                  </div>
+                  <div class="col-12 code-box text-code-light text-black">
+                    <pre class="line-numbers set-max-height">
+                <code id='code-window' class="language-javascript">
 const number = document.querySelector(".input-number");
 const result = document.querySelector(".input-result");
 const btn = document.querySelector(".btn-send");
@@ -276,5 +413,27 @@ btn.addEventListener("click", function (e) {
         <div class="print-odd-even-check"></div>
       </div>
     </div>
+
+    <!-- MODALS -->
+    <div class="modal hidden">
+      <button class="btn--close-modal">&times;</button>
+      <h2 class="modal__header">
+        Open your bank account <br />
+        in just <span class="highlight">5 minutes</span>
+      </h2>
+      <form class="modal__form">
+        <label>First Name</label>
+        <input type="text" />
+        <label>Last Name</label>
+        <input type="text" />
+        <label>Email Address</label>
+        <input type="email" />
+        <button class="btn">Next step &rarr;</button>
+      </form>
+    </div>
   </body>
+  <script src="prism/prism.js"></script>
+  <script src="scripts/index.js" defer></script>
+  <script src="scripts/animation.js" defer></script>
+  <script src="scripts/modals.js" defer></script>
 </html>
