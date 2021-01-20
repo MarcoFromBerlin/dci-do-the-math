@@ -861,11 +861,11 @@ const makeObj = (arr) => {
   // arrOfObjsNames.map((x) => console.log(`${x.fName}, ${x.age} yrs old`));
 };
 
-makeObj([
-  ["marco", 1981],
-  ["giorgos", 1991],
-  ["naimah", 2001],
-]);
+// makeObj([
+//   ["marco", 1981],
+//   ["giorgos", 1991],
+//   ["naimah", 2001],
+// ]);
 
 // console.log(arrOfObjsNames);
 
@@ -1035,6 +1035,206 @@ const checkPropLength = (objs) => {
 
 // // checkPropLength([obj1, obj2, obj3, obj4, obj5]);
 
+const add = (a, b) => a + b;
+const subtract = (a, b) => a - b;
+const multiply = (a, b) => a * b;
+const divide = (a, b) => a / b;
+
+///
+
+const sayHello = (str) => "Hello " + str;
+sayHello("Janey"); // "Hello Janey"
+
+//
+
+const avgArr = (arr) => arr.reduce((acc, cur) => acc + cur, 0) / arr.length;
+
+///
+
+function Student(firstName, lastName) {
+  this.firstName = firstName;
+  this.lastName = lastName;
+}
+
+const createStudent = (firstName, lastName) => new Student(firstName, lastName);
+
+createStudent("Nic", "Cage");
+
+//
+
+let arrOfStudents = [];
+
+let nic = createStudent("nic", "cage");
+let steven = createStudent("steven", "segal");
+let maria = createStudent("mariah", "carey");
+
+arrOfStudents.push(nic, steven, maria);
+
+// console.log(arrOfStudents);
+
+//
+
+const findStudentByFirstName = (firstName) => {
+  arrOfStudents.forEach((x) => {
+    console.log(`${firstName} is contained? ${x.firstName === firstName}`);
+  });
+};
+
+// console.log(
+//   findStudentByFirstName("mariah")
+// ) // true`
+// `findStudentByFirstName('Elie') // true``findStudentByFirstName('Janey') // false``findStudentByFirstName('Janey') // false``findStudentByFirstName('TIM') // true``findStudentByFirstName('MMMaaaTTTtttTTT') // false`;
+
+///
+
+const extractEveryThird = (arr) => {
+  arr.map((x, i) => ((i + 1) % 3 !== 0 ? arr.splice(i, 2) : null));
+  return arr;
+};
+
+console.log(extractEveryThird([1, 2, 3])); // [3]
+console.log(extractEveryThird([1, 2, 3, 4, 5, 6])); // [3,6]
+console.log(extractEveryThird(["a", "b", "c", "d"])); // ["c"]
+console.log(extractEveryThird(["first value", "second value", "third value"])); // ["third value"]
+
+//
+//
+
+function CountedArr(even, odd) {
+  this.even = even;
+  this.odd = odd;
+}
+
+const countEvensAndOdds = (arr) => {
+  let even = "";
+  let odd = "";
+
+  arr.map((x) => (x % 2 === 0 ? even++ : odd++));
+
+  return new CountedArr(even, odd);
+};
+
+console.log(countEvensAndOdds([1, 2, 3, 4]));
+/_ { oddCount:2, evenCount:2 } /;
+console.log(countEvensAndOdds([1, 2, 3, 4, 5, 6, 7]));
+/ { oddCount:4, evenCount:3 } _/;
+
+///
+//
+
+const onlyCapitalLetters = (str) => str.replace(/[a-z]/g, "");
+
+console.log(onlyCapitalLetters("Amazing")); // "A"
+console.log(onlyCapitalLetters("nothing")); // ""
+console.log(onlyCapitalLetters("EVERYTHING")); // "EVERYTHING"
+
+//
+//
+
+//
+
+var arrayOfWeekdays = [
+  "Sunday",
+  "Monday",
+  "Tuesday",
+  "Wednesday",
+  "Thursday",
+  "Friday",
+  "Saturday",
+];
+
+const printDay = (day) => {
+  var dateObj = new Date();
+  var weekday = dateObj.getDay();
+  return arrayOfWeekdays[day === "today" ? weekday : day];
+};
+
+console.log(printDay(4)); // "Wednesday" printDay(41); // undefined
+console.log(printDay("today")); // "Wednesday" printDay(41); // undefined
+console.log(printDay(41)); // "Wednesday" printDay(41); // undefined
+
+///
+///
+
+const lastElement = (arr) => (arr.length === 0 ? [] : arr.pop());
+// arr[(arr.length === 0 ? [] : arr.length)];
+
+console.log(lastElement([1, 2, 3, 4])); // 4
+console.log(lastElement([])); // undefined
+
+///
+///
+
+// COMPARE
+
+const numberCompare = (num1, num2) => {
+  if (num1 === num2) return "Numbers are equal";
+  if (num1 > num2) return "First is greater";
+  if (num1 < num2) return "Second is greater";
+};
+
+console.log(numberCompare(1, 1)); // "Numbers are equal"`
+console.log(numberCompare(2, 1)); // "First is greater"`
+console.log(numberCompare(1, 2)); // "Second is greater"`;
+
+///
+///
+// Letter included
+
+const singleLetterCount = (word, letter) =>
+  word.toLowerCase().length -
+  word.toLowerCase().replace(new RegExp(letter.toLowerCase(), "g"), "").length;
+
+console.log(singleLetterCount("amazing", "A")); // 2
+console.log(singleLetterCount("DCI School", "o")); // 2`;
+///
+///
+/// ANOTHER TIP CALCULATOR
+// ## tipCalculator
+// 1. Create an array 'bills' containing all 10 test bill values
+// 2. Create empty arrays for the tips and the totals
+// ('tips' and 'totals')
+// 3. Use the 'calcTip' function we wrote before (no need to repeat)
+// to calculate tips and total values(bill + tip) for every bill value
+//   in the bills array.Use a for loop to perform the 10 calculations!
+
+let arrBills = [22, 295, 176, 440, 37, 105, 10, 1100, 86, 52];
+let arrTips = [];
+let arrTotals = [];
+
+//
+//
+// MULTIPLE LETTER COUNTER
+
+const multipleLetterCount = (str) => {
+  // let counter = 0;
+  let myObjs = {};
+
+  for (const v of str) {
+    // variable to store letter
+    let letter = v;
+
+    // counter = str.split("").filter((v) => v === letter).length;
+
+    myObjs[v] = str.split("").filter((v) => v === letter).length;
+  }
+
+  return myObjs;
+};
+
+console.log(multipleLetterCount("hello")); // {h:1, e: 1, l: 2, o:1}`
+console.log(multipleLetterCount("person")); // {p:1, e: 1, r: 1, s:1, o:1, n:1}`
+
+myObjs = {};
+
+for (i = 0; i < num; i++) {
+  myObjs["obj" + i] = new myObject("param1", "param2");
+  myObjs["obj" + i].someProperty = value;
+}
+myObjs.obj0.someProperty;
+
+///
+///
 // //////////////////////////////
 // PASSWORD VALIDATOR EXERCISE
 // //////////////////////////////
