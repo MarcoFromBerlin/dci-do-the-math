@@ -21,7 +21,19 @@ const mathMain = document.querySelector(".math__oper-main");
 // FUNCTIONS
 
 const zoomCode = (e) => {
-  if (e.target.classList.contains("btn-code-zoom")) {
+  const isItZoomed = () => {
+    if (e.target.classList.contains("btn-rotate-back")) {
+      return (
+        Number(
+          e.target.parentElement.parentElement.querySelector(".is-zoomed")
+            .textContent
+        ) === 1
+      );
+    }
+    return false;
+  };
+
+  if (e.target.classList.contains("btn-code-zoom") || isItZoomed()) {
     // hiden class hide-zoomed that hold the status of the div zoom
     const isZoomedDiv = e.target.parentElement.parentElement.querySelector(
       ".is-zoomed"
@@ -38,9 +50,6 @@ const zoomCode = (e) => {
     const codeBox = e.target.parentElement.parentElement.querySelector(
       ".code-box"
     );
-
-    console.log("query", document.querySelector(".flip-card-inner"));
-    console.log("fli-card", e.target.parentElement.parentElement);
 
     let heightCode = languageJava.offsetHeight + 130;
     let widthCode = languageJava.offsetWidth; // 960
@@ -81,11 +90,12 @@ const zoomCode = (e) => {
       mathContainer.style.height = `${heightCode + paddingVert}px`;
 
       // set backface-visibility: hidden // visible;
-
       e.target.parentElement.parentElement.style.backfaceVisibility = "hidden";
 
       isZoomedDiv.textContent = "1";
     } else if (Number(isZoomedDiv.textContent) === 1) {
+      // console.log("zoom out fired");
+
       // set backface-visibility: hidden // visible;
       e.target.parentElement.parentElement.style.backfaceVisibility = "visible";
 
@@ -120,19 +130,16 @@ const rotate = (e) => {
 };
 
 const rotateBack = (e) => {
-  // console.log("fired");
   e.preventDefault();
   if (e.target.classList.contains("btn-rotate-back")) {
     const isZoomedDiv = e.target.parentElement.parentElement.querySelector(
       ".is-zoomed"
     );
 
-    // console.log(isZoomedDiv);
+    if (Number(isZoomedDiv.textContent) === 1) {
+      zoomCode(e);
+    }
 
-    isZoomedDiv.textContent = "1";
-    // zoomCode(e);
-
-    console.log("rotate-back");
     setTimeout(() => {
       e.target.parentElement.parentElement.parentElement.parentElement.style.backgroundColor =
         "#e1dcc6";

@@ -806,22 +806,66 @@ const hackThis = (arr) =>
 
 let arrOfObjsNames = [];
 
+// function Friend(fName, birthYear) {
+//   this.fName = fName;
+//   this.birthYear = birthYear;
+//   this.calcAge = function () {
+//     var curDate = new Date();
+//     var curYear = curDate.getFullYear();
+//     return curYear - this.birthYear;
+//   };
+//   this.age = this.calcAge();
+// }
+
+// var obj = function () {
+//   this.name = "Bob";
+//   this.age = 23;
+//   function privateTest() {
+//     alert("hai");
+//   }
+//   this.test = privateTest;
+// };
+
+// function Friend(fName, birthYear) {
+//   this.fName = fName;
+//   this.birthYear = birthYear;
+//   this.calcAge = function () {
+//     let ageCalc = 0;
+//     var curDate = new Date();
+//     var curYear = curDate.getFullYear();
+//     return (ageCalc = curYear - this.birthYear);
+//   };
+//   this.age = this.calcAge();
+// }
+function Friend(fName, birthYear) {
+  this.fName = fName;
+  this.birthYear = birthYear;
+  this.age = function () {
+    let ageCalc = 0;
+    var curDate = new Date();
+    var curYear = curDate.getFullYear();
+    return (ageCalc = curYear - this.birthYear);
+  };
+  // this.age = this.calcAge();
+}
+// console.dir(Friend.calcAge());
 const makeObj = (arr) => {
   arr.forEach((x) => {
-    arrOfObjsNames.push({
-      fName: x[0],
-      age: x[1],
-    });
+    const newFriend = new Friend(x[0], x[1]);
+    console.log(newFriend);
+    // console.log(newFriend.calcAge());
+    arrOfObjsNames.push(new Friend(x[0], x[1]));
   });
-  console.log("My friends are:");
-  arrOfObjsNames.map((x) => console.log(`${x.fName}, ${x.age} yrs old`));
+  console.log(arrOfObjsNames);
+  // console.log("My friends are:");
+  // arrOfObjsNames.map((x) => console.log(`${x.fName}, ${x.age} yrs old`));
 };
 
-// makeObj([
-//   ["marco", 29],
-//   ["giorgos", 20],
-//   ["naimah", 18],
-// ]);
+makeObj([
+  ["marco", 1981],
+  ["giorgos", 1991],
+  ["naimah", 2001],
+]);
 
 // console.log(arrOfObjsNames);
 
@@ -1042,14 +1086,24 @@ const avg = (arr) => arr.reduce((acc, cur) => acc + cur, 0) / arr.length;
 // to see if a given sentence contains every letter
 // of the alphabet.Make sure you igore string casing!
 
-const isPangram = (string) =>
+const isPangram1 = (string) =>
   /(?=.*a)(?=.*b)(?=.*c)(?=.*d)(?=.*e)(?=.*f)(?=.*g)(?=.*h)(?=.*i)(?=.*j)(?=.*k)(?=.*l)(?=.*m)(?=.*n)(?=.*o)(?=.*p)(?=.*q)(?=.*r)(?=.*s)(?=.*t)(?=.*u)(?=.*v)(?=.*w)(?=.*x)(?=.*y)(?=.*z)./i.test(
     string
   );
 
-console.log(isPangram("The five boxing wizards jump quickly")); //true
-console.log(isPangram("The five boxing wizards jump quick")); //false
+function isPangram(str) {
+  const aToZ = "abcdefghijklmnopqrstuvwxyz";
 
+  for (let letter of aToZ) {
+    if (!str.toLowerCase().includes(letter)) {
+      return false;
+    }
+  }
+  return true;
+}
+
+// console.log(isPangram("The five boxing wizards jump quickly")); //true
+// console.log(isPangram("The five boxing wizards jump quick")); //false
 //
 ///
 //
@@ -1065,89 +1119,100 @@ console.log(isPangram("The five boxing wizards jump quick")); //false
 // Pick a random value from:
 // `1,2,3,4,5,6,7,8,9,10,J,Q,K,A`
 
-const getCard = (card) => {
-  const valuesCard = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, "J", "Q", "K", "A"];
-  const random = Math.floor(Math.random() * valuesCard.length);
-  return { value: random, suit: card };
-};
+let valuesCard = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, "J", "Q", "K", "A"];
+let cards = ["clubs", "spades", "hearts", "diamonds"];
 
-// `clubs,spades, hearts, diamonds`;
+const getRandom = (num) => Math.floor(Math.random() * num);
 
-// console.log(getCard("clubs"));
+function Card(value, card) {
+  this.value = value;
+  this.card = card;
+}
+
+const getCard = () =>
+  new Card(
+    valuesCard[getRandom(valuesCard.length)],
+    cards[getRandom(cards.length)]
+  );
+
+// {
+//   return {
+//     value: valuesCard[getRandom(valuesCard.length)],
+//     suit: cards[getRandom(cards.length)],
+//   };
+// };
+
+// console.log(getCard());
 
 ///
 //
 //
 
-function domainName(url) {
-  let domainName = "";
-  // let toCut =
-  //   url.includes("http://www.") || url.includes("https://www.") ? "." : "/";
+// PYRAMIDS
 
-  // console.log(
-  //   url
-  //     .split("")
-  //     .splice(url.split("").indexOf(toCut) + 1, url.split("").length)
-  //     .splice(url.split("").indexOf(".") + 1, url.split("").length)
-  // );
+function longestSlideDown(pyramid) {
+  console.log(pyramid);
 
-  // domainName = url.slice(url.indexOf("/") + 2);
-  // console.log(url.includes("http://www." || url.includes("https://www.")));
+  // for (let i = 0; i < pyramid.length; i++) {
+  for (const x of pyramid) {
+    let str = x.join(" ");
+    let highest = x.indexOf(Math.max(...x));
 
-  if (url.includes("http://www.") || url.includes("https://www."))
-    return (
-      url
-        // .slice(url.indexOf("/") + 6)
-        .split("")
-        .splice(url.split("").indexOf(".") + 1, url.split("").length)
-        .slice(0, url.slice(url.indexOf("/")).indexOf("."))
+    console.log(
+      str.slice(highest, 0) +
+        "/" +
+        str.slice(highest, highest + 1) +
+        "/" +
+        str.slice(highest + 1, str.length)
     );
 
-  return url
-    .slice(url.indexOf("/") + 2)
-    .slice(0, url.slice(url.indexOf("/") + 2).indexOf("."));
+    // console.log(x.join(" "));
 
-  // if (domainName.indexOf("/") === -1) return domainName;
+    // console.log(x.indexOf(Math.max(...x)));
 
-  // domainName = domainName
-  //   .split("")
-  //   .splice(0, domainName.split("").indexOf("."))
-  //   .join("");
-
-  // console.log(domainName);
-
-  // .reverse()
-  // .splice(0, domainName.split("").reverse().indexOf("."))
-  // .reverse();
-  // .reverse().join();
-  // .splice(
-  //   0,
-  //   url
-  //     .slice(url.indexOf(".") + 2)
-  //     .split("")
-  //     .indexOf("/")
-  // )
-  // .join("");
-
-  // return domainName;
+    // console.log(pyramid[i].indexOf(Math.max(...pyramid[i])));
+    // if (i === 0) console.log(`   /${pyramid[i].join(" ")}/`);
+    // if (i === 1) console.log(`  /${pyramid[i].join(" ")}/`);
+    // if (i === 2) console.log(` /${pyramid[i].join(" ")}/`);
+    // if (i === 3) console.log(`/${pyramid[i].join(" ")}/`);
+  }
 }
 
-// const domainName = (domain) => {
-//   return domain
-//     .slice(domain.indexOf("/") + 2)
-//     .split("")
-//     .splice(
-//       0,
-//       domain
-//         .slice(domain.indexOf("/") + 2)
-//         .split("")
-//         .indexOf("/")
-//     )
-//     .join("");
-// };
+var date1 = "20160923";
 
-// console.log(domainName("http://google.com")); // "github";
-// console.log(domainName("http://github.com/carbonfive/raygun")); // "github";
-// console.log(domainName("http://www.github.com/carbonfive/raygun")); // "github";
-// console.log(domainName("http://www.zombie-bites.com")); // "zombie-bites";
-// console.log(domainName("https://www.cnet.com")); // "cnet";
+var formattedDate =
+  date1.slice(0, 4) + "-" + date1.slice(4, 6) + "-" + date1.slice(6, 8);
+
+// console.log(formattedDate);
+
+// console.log("foo baz".splice(4, 0, "bar "));
+
+//    /3/
+//   \7\ 4
+//  2 \4\ 6
+// 8 5 \9\ 3
+
+// console.log(
+//   longestSlideDown([[3], [7, 4], [2, 4, 6], [8, 5, 9, 3]]) // 23 "should work for small pyramids"
+// );
+// Test.assertEquals(
+//   longestSlideDown([
+//     [75],
+//     [95, 64],
+//     [17, 47, 82],
+//     [18, 35, 87, 10],
+//     [20, 4, 82, 47, 65],
+//     [19, 1, 23, 75, 3, 34],
+//     [88, 2, 77, 73, 7, 63, 67],
+//     [99, 65, 4, 28, 6, 16, 70, 92],
+//     [41, 41, 26, 56, 83, 40, 80, 70, 33],
+//     [41, 48, 72, 33, 47, 32, 37, 16, 94, 29],
+//     [53, 71, 44, 65, 25, 43, 91, 52, 97, 51, 14],
+//     [70, 11, 33, 28, 77, 73, 17, 78, 39, 68, 17, 57],
+//     [91, 71, 52, 38, 17, 14, 91, 43, 58, 50, 27, 29, 48],
+//     [63, 66, 4, 68, 89, 53, 67, 30, 73, 16, 69, 87, 40, 31],
+//     [4, 62, 98, 27, 23, 9, 70, 98, 73, 93, 38, 53, 60, 4, 23],
+//   ]),
+//   1074,
+//   "should work for medium pyramids"
+// );
