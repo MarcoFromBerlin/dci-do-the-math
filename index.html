@@ -78,6 +78,7 @@
           <div class="col-2"></div>
           <div class="col-8 t-center-x center-div-x flip-card">
             <div class="math__oper-main flip-card-inner">
+              <!-- CARD FRONT START -->
               <div class="flip-card-front pv-1">
                 <div class="row t-center-x">
                   <div class="col-2"></div>
@@ -111,6 +112,8 @@
                   <div class="what-to-do"></div>
                 </div>
               </div>
+              <!-- CARD FRONT END -->
+              <!-- CARD BACK START -->
               <div class="flip-card-back pv-1">
                 <div class="row t-center-x center-div-x">
                   <div class="col-2"></div>
@@ -190,41 +193,66 @@ btn.addEventListener("click", function (e) {
                   </div>
                 </div>
               </div>
+              <!-- CARD FRONT END -->
             </div>
           </div>
 
           <div class="col-2"></div>
         </div>
       </div>
-      <!-- LOOK FOR RANGE -->
+
+      <!-- LOOK FOR RANGE NEW -->
       <div class="math-container t-center-x pt-2 pb-3">
         <div class="row">
           <div class="col-2"></div>
           <div class="col-8 z-index-1">
             <div class="math__oper-title pv-1">
-              <h4 class="pb-1">NumberTeller</h4>
-              <h5>
-                Give me a result and a number, and I'll tell you what to do
-              </h5>
+              <h4 class="pb-1">Look for range</h4>
+              <h5>Check if a number is in between other two</h5>
             </div>
           </div>
           <div class="col-2"></div>
         </div>
         <div class="row">
           <div class="col-2"></div>
+
+          <!-- SET HEIGHT -->
+          <!-- style="height: 400px" -->
           <div class="col-8 t-center-x center-div-x flip-card">
             <div class="math__oper-main flip-card-inner">
+              <!-- CARD FRONT START -->
               <div class="flip-card-front pv-1">
                 <div class="row t-center-x">
                   <div class="col-2"></div>
+                  <!-- HERE -->
                   <div class="col-8">
-                    <div class="pv-1">Result</div>
-                    <input
-                      class="input-result input-text-email t-center-x"
-                      placeholder="Type the result"
-                      type="number"
-                    />
+                    <div class="col-12">
+                      <div class="pv-1">Lower</div>
+                      <input
+                        class="input-low input-result input-text-email t-center-x"
+                        type="number"
+                      /><br />
+                    </div>
+                    <div class="col-12">
+                      <div class="pv-1">Upper</div>
+                      <input
+                        class="input-upp input-result input-text-email t-center-x"
+                        type="number"
+                      /><br />
+                    </div>
+                    <div class="col-12">
+                      <div class="pv-1">Check</div>
+                      <input
+                        class="input-check input-result input-text-email t-center-x"
+                        type="number"
+                      /><br />
+                    </div>
+                    <div class="col-12 btn-container pv-2 center-div-x">
+                      <button class="btn-send-range btn-yellow">Send</button>
+                      <div class="is-in-range"></div>
+                    </div>
                   </div>
+                  <!-- HERE -->
                   <div class="col-2 ml-1">
                     <button
                       title="Show me the code"
@@ -233,20 +261,10 @@ btn.addEventListener("click", function (e) {
                       <i class="fas fa-code text-thin"></i>
                     </button>
                   </div>
-                  <div class="col-12">
-                    <div class="pb-1">Number</div>
-                    <input
-                      class="input-number input-text-email t-center-x"
-                      placeholder="Insert a number"
-                      type="number"
-                    />
-                  </div>
-                </div>
-                <div class="col-12 btn-container pv-2">
-                  <button class="btn-send btn-yellow">Send</button>
-                  <div class="what-to-do"></div>
                 </div>
               </div>
+              <!-- CARD FRONT END -->
+              <!-- CARD BACK START -->
               <div class="flip-card-back pv-1">
                 <div class="row t-center-x center-div-x">
                   <div class="col-2"></div>
@@ -264,74 +282,44 @@ btn.addEventListener("click", function (e) {
                   </div>
                   <div class="col-12 code-box text-code-light text-black">
                     <pre class="line-numbers set-max-height">
+                      <!-- CODE START -->
                 <code id='code-window' class="language-javascript">
-const number = document.querySelector(".input-number");
-const result = document.querySelector(".input-result");
-const btn = document.querySelector(".btn-send");
-const what = document.querySelector(".what-to-do");
-
-const doTheMath = (num1, res) => {
-  if (num1 >= res * 2 && (num1 / res) % 2 === 0)
-    return `The given result must be ${res} therefore you can divide by ${
-      num1 / res
-    }`;
-  if ((res / num1) % 2 === 0)
-    return `The given result must be ${res} therefore gotta multiply by ${
-      res / num1
-    }`;
-  if (num1 > res)
-    return `The given result must be ${res} therefore gotta subtract ${
-      num1 - res
-    }`;
-  if (num1 < res)
-    return `The given result must be ${res} therefore gotta add ${res - num1}`;
-  if (num1 === res)
-    return `The given result must be ${res} therefore gotta do nothing (null)`;
-};
-
-btn.addEventListener("click", function (e) {
+const lower = document.querySelector(".input-low");
+const upper = document.querySelector(".input-upp");
+const check = document.querySelector(".input-check");
+const btnRange = document.querySelector(".btn-send-range");
+const isRange = document.querySelector(".is-in-range");
+btnRange.addEventListener("click", function (e) {
   e.preventDefault();
 
-  let num1 = Number(number.value);
-  let res = Number(result.value);
+  let num = Number(check.value);
+  let low = Number(lower.value);
+  let upp = Number(upper.value);
 
-  what.classList.add("pt-2");
+  isRange.classList.add("pt-2");
 
-  if (num1 >= res * 2 && (num1 / res) % 2 === 0)
-    return (what.textContent = `The given result must be ${res} therefore you can divide by ${
-      num1 / res
-    }`);
-
-  if ((res / num1) % 2 === 0)
-    return (what.textContent = `The given result must be ${res} therefore gotta multiply by ${
-      res / num1
-    }`);
-
-  if (num1 > res)
-    return (what.textContent = `The given result must be ${res} therefore gotta subtract ${
-      num1 - res
-    }`);
-
-  if (num1 < res)
-    return (what.textContent = `The given result must be ${res} therefore gotta add ${
-      res - num1
-    }`);
-
-  if (num1 === res)
-    return (what.textContent = `The given result must be ${res} therefore gotta do nothing (null)`);
+  if (!Number.isInteger(num)) {
+    return (isRange.textContent = `${num} in not an integer`);
+  } else if (num > low && num < upp) {
+    return (isRange.textContent = `${num} is in range`);
+  } else if (num <= low || num >= upp) {
+    return (isRange.textContent = `${num} is NOT in range`);
+  }
 });
-
+<!-- CODE END -->
                 </code>
               </pre>
                   </div>
                 </div>
               </div>
+              <!-- CARD FRONT END -->
             </div>
           </div>
 
           <div class="col-2"></div>
         </div>
       </div>
+
       <!-- LOOK FOR RANGE -->
       <div class="math-container t-center-x pv-2 mv-3">
         <div class="row">
@@ -436,4 +424,5 @@ btn.addEventListener("click", function (e) {
   <script src="scripts/index.js" defer></script>
   <script src="scripts/animation.js" defer></script>
   <script src="scripts/modals.js" defer></script>
+  <script src="scripts/api.js" defer></script>
 </html>

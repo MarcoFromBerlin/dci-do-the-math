@@ -155,16 +155,16 @@ document.body.addEventListener("click", rotate);
 document.body.addEventListener("click", rotateBack);
 document.body.addEventListener("click", zoomCode);
 
-btnRotation.forEach((element) => {
-  element.addEventListener("click", rotate);
-});
+// btnRotation.forEach((element) => {
+//   element.addEventListener("click", rotate);
+// });
 
-btnRotationBack.forEach((element) => {
-  element.addEventListener("click", rotateBack);
-});
+// btnRotationBack.forEach((element) => {
+//   element.addEventListener("click", rotateBack);
+// });
 
-btnCodeZoom.forEach((element) => {
-  element.addEventListener("click", zoomCode());
-});
+// btnCodeZoom.forEach((element) => {
+//   element.addEventListener("click", zoomCode());
+// });
 
 // END EVENT LISTENERS
